@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [{
+            "env": {
+                "PORT": "8080",
+                "cloudant_account": "4fa75cd1-58c9-40f8-b564-f0ea711bd506-bluemix",
+                "cloudant_password": "9490c5b340b894b4db5f02b357cf59bf1a6fec84543e2080bcb1049cd2d4a4f5"
+            },
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceRoot}/app.js",
+            "address": "localhost"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program by www",
+            "program": "${workspaceRoot}/bin/www"
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to Process",
+            "address": "localhost",
+            "port": 5858
+        }
+    ]
+}
