@@ -1,2 +1,7 @@
 # Audio Box Control Panel
-A backstage to control the chatbot of Humix Audio Box  
+A backstage system to control the chatbot of Humix Audio Box
+
+## Installation
+```sh
+npm start
+```
