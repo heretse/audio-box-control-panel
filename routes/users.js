@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var myBasicAuth = require('../my-basic-auth.js');
 
 // Load the Cloudant library.
 var Cloudant = require('cloudant');
 
 // Initialize the library with my account.
-var cloudant = Cloudant({ account: process.env.cloudant_account, password: process.env.cloudant_password });
+var cloudant = Cloudant({ account: process.env.CLOUDANT_ACCOUNT, password: process.env.CLOUDANT_PASSWORD });
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', myBasicAuth, function(req, res, next) {
     var rows_per_page = 10;
     var page = 1;
     if (req.query.page) {

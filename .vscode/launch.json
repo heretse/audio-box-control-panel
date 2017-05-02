@@ -6,8 +6,10 @@
     "configurations": [{
             "env": {
                 "PORT": "8080",
-                "cloudant_account": "4fa75cd1-58c9-40f8-b564-f0ea711bd506-bluemix",
-                "cloudant_password": "9490c5b340b894b4db5f02b357cf59bf1a6fec84543e2080bcb1049cd2d4a4f5"
+                "CLOUDANT_ACCOUNT": "4fa75cd1-58c9-40f8-b564-f0ea711bd506-bluemix",
+                "CLOUDANT_PASSWORD": "9490c5b340b894b4db5f02b357cf59bf1a6fec84543e2080bcb1049cd2d4a4f5",
+                "BASIC_USERNAME": "admin",
+                "BASIC_PASSWORD": "gemtek1234"
             },
             "type": "node",
             "request": "launch",
