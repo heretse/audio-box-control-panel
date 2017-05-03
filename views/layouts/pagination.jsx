@@ -11,6 +11,9 @@ class Pagination extends React.Component {
         if (totalPages > 10) {
             if (this.props.currentPage > 10) {
                 var quotient = Math.floor(this.props.currentPage / 10);
+                if (this.props.currentPage % 10 === 0) {
+                    quotient -= 1;
+                }
                 startPage = quotient*10 + 1;
 
                 endPage = (quotient + 1)*10;

@@ -18,19 +18,35 @@ router.get('/', myBasicAuth, function(req, res, next) {
     var skip = (page - 1) * rows_per_page;
 
     var db = cloudant.db.use('playlist');
-    db.list({
-        include_docs: true,
-        revs_info: false,
-        limit: rows_per_page,
-        skip: skip
-    }, function(err, body) {
-        if (err) {
-            console.log(err);
-        }
-        var playlistRows = body.rows;
+    if (req.query.user) {
+        db.find({
+            limit: rows_per_page,
+            selector: { "user": { "$eq": parseInt(req.query.user) } },
+            fields: ["_id", "_rev", "user", "type", "owner_id", "item_id", "external_url"]
+        }, function(err, result) {
+            if (err) {
+                console.log(err);
+            }
 
-        res.render('playlists', { title: 'Playlists', playlists: playlistRows, totalRows: body.total_rows, rowsPerPage: rows_per_page, currentPage: page });
-    });
+            var findRows = result.docs;
+
+            res.render('playlists', { title: 'Playlists', playlists: findRows, totalRows: result.total_rows, rowsPerPage: rows_per_page, currentPage: page });
+        });
+    } else {
+        db.list({
+            include_docs: true,
+            revs_info: false,
+            limit: rows_per_page,
+            skip: skip
+        }, function(err, body) {
+            if (err) {
+                console.log(err);
+            }
+            var playlistRows = body.rows;
+
+            res.render('playlists', { title: 'Playlists', playlists: playlistRows, totalRows: body.total_rows, rowsPerPage: rows_per_page, currentPage: page });
+        });
+    }
 });
 
 module.exports = router;

@@ -14,7 +14,7 @@ class PlaylistTable extends React.Component {
             }
 
             if (doc && !doc.indexes) {
-                rows.push(<PlaylistRowObject userId={doc.user} type={doc.type} itemId={doc.item_id} externalUrl={doc.external_url} />);
+                rows.push(<PlaylistRowObject userId={doc.user} type={doc.type} ownerId={doc.owner_id} itemId={doc.item_id} externalUrl={doc.external_url} />);
             }
         }
 
@@ -27,6 +27,7 @@ class PlaylistTable extends React.Component {
                                 <tr>
                                     <th>Telegram ID</th>
                                     <th>Type</th>
+                                    <th>Owner</th>
                                     <th>Item</th>
                                 </tr>
                             </thead>
