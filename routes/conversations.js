@@ -50,4 +50,8 @@ router.get('/', myBasicAuth, function(req, res, next) {
 
 });
 
+router.get('/classify', myBasicAuth, function(req, res, next) {
+    res.redirect('/conversations');
+});
+
 module.exports = router;

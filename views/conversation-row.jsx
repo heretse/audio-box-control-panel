@@ -16,6 +16,15 @@ class ConversationRowObject extends React.Component {
                 <td>{this.props.entities}</td>
                 <td>{this.props.nodeVisited}</td>
                 <td>{timeString}</td>
+                <td>
+                    <div className="btn-group">
+                        <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown">Classification <span className="caret"></span></button>
+                        <ul className="dropdown-menu" role="menu">
+                            <li><a href={"/conversations/classify?type=Intents&_id=" + this.props.docId}>Intents</a></li>
+                            <li><a href={"/conversations/classify?type=Entities&_id=" + this.props.docId}>Entities</a></li>
+                        </ul>
+                    </div>
+                </td>
             </tr>
         );
     }

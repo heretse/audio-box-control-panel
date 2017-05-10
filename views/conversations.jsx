@@ -34,7 +34,7 @@ class UserTable extends React.Component {
             }
 
             if (doc && !doc.indexes) {
-                rows.push(<ConversationRowObject userName={doc.context.user_name} input={doc.input.text} intents={intentNames} entities={entityNames} nodeVisited={doc.output.nodes_visited[0]} timestamp={doc.creation_date}/>);
+                rows.push(<ConversationRowObject docId={doc._id} userName={doc.context.user_name} input={doc.input.text} intents={intentNames} entities={entityNames} nodeVisited={doc.output.nodes_visited[0]} timestamp={doc.creation_date}/>);
             }
         }
 
@@ -51,6 +51,7 @@ class UserTable extends React.Component {
                                     <th>Entities</th>
                                     <th>Node Visited</th>
                                     <th>Time</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>{rows}</tbody>

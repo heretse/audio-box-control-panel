@@ -9,7 +9,7 @@ class UserTable extends React.Component {
         for (var i=0; i<this.props.users.length; i++) {
             var doc = this.props.users[i].doc;
             if (doc && !doc.indexes) {
-                rows.push(<UserRowObject userId={doc.id} firstName={doc.first_name} lastName={doc.last_name} fullName={doc.full_name} />);
+                rows.push(<UserRowObject docId={doc._id} userId={doc.id} firstName={doc.first_name} lastName={doc.last_name} fullName={doc.full_name} senseId={doc.sense_id} />);
             }
         }
 
@@ -24,6 +24,7 @@ class UserTable extends React.Component {
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Full Name</th>
+                                    <th>Sense ID</th>
                                 </tr>
                             </thead>
                             <tbody>{rows}</tbody>

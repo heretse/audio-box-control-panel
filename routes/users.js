@@ -29,4 +29,34 @@ router.get('/', myBasicAuth, function(req, res, next) {
     });
 });
 
+router.post('/edit', myBasicAuth, function(req, res, next) {
+    console.log("req.body.docId = " + req.body.docId);
+    console.log("req.body.newSenseId = " + req.body.newSenseId);
+
+    var db = cloudant.db.use('telegram_users');
+    db.find({ selector: { _id: req.body.docId } }, function(er, result) {
+        if (er) {
+            throw er;
+        }
+
+        console.log('Found %d documents with _id = %s', result.docs.length, req.body.docId);
+        if (result.docs.length > 0) {
+            result.docs[0].sense_id = req.body.newSenseId;
+
+            // ...and insert a document in it.
+            db.insert(result.docs[0], result.docs[0]._id, function(err, body, header) {
+                if (err) {
+                    return console.log('[telegram_users.insert] ', err.message);
+                }
+
+                console.log('You have inserted the rabbit.');
+                console.log(body);
+                res.redirect('/users');
+            });
+        } else {
+            res.redirect('/users');
+        }
+    });
+});
+
 module.exports = router;
